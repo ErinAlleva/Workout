@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -91,6 +92,8 @@ public class ListContent {
         ExerciseItem myItem = new ExerciseItem(name, sets, reps, weight, max);
         if (!exerciseItemArrayList.contains(myItem)) {
             exerciseItemArrayList.add(myItem);
+        } else {
+            Toast.makeText(context, "This exercise already exists", Toast.LENGTH_SHORT).show();
         }
     }
 

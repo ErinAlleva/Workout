@@ -1,11 +1,13 @@
 package comeaa.workout;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class OpenWorkout extends AppCompatActivity {
 
@@ -14,6 +16,15 @@ public class OpenWorkout extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_workout);
+
+        android.support.v7.widget.Toolbar openWToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.openWorkoutToolbar);
+        setSupportActionBar(openWToolbar);
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();

@@ -21,8 +21,11 @@ import android.provider.BaseColumns;
     }
 
 
+
+
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "WorkoutList";
+    private static DbHelper sInstance;
 
     //public static final String IS_CHECKED = "is_checked";
 
@@ -34,7 +37,7 @@ import android.provider.BaseColumns;
             FeedEntry.COLUMN_NAME_WEIGHT + " TEXT," + FeedEntry.COLUMN_NAME_MAX + " Text)";
 
 
-    public DbHelper(Context context) {
+    private DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -53,6 +56,16 @@ import android.provider.BaseColumns;
     }
 
 
+    public static synchronized DbHelper getInstance(Context context) {
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new DbHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
 }
 
 
